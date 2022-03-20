@@ -1,0 +1,23 @@
+grumphp:
+    fixer:
+        enabled: true
+        fix_by_default: true
+    tasks:
+        phpunit:
+            config_file: phpunit.xml
+        phplint: ~
+        phpcs:
+            standard: PSR12
+        phpcpd:
+            directory: [ '.' ]
+            exclude: [ 'vendor' ]
+            fuzzy: false
+            min_lines: 5
+            min_tokens: 70
+            triggered_by: [ 'php' ]
+        phpcsfixer:
+            allow_risky: true
+            using_cache: true
+            config: '.php-cs-fixer.php'
+            verbose: true
+

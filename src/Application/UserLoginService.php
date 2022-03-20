@@ -1,5 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace UserLoginService\Application;
 
 use Exception;
@@ -7,9 +19,10 @@ use UserLoginService\Domain\User;
 
 class UserLoginService
 {
-    const LOGIN_CORRECTO = 'Login correcto, gracias';
-    const LOGIN_INCORRECTO = 'Login incorrecto';
-    const USUARIO_NO_LOGEADO = 'Usuario no logeado';
+    public const LOGIN_CORRECTO = 'Login correcto, gracias';
+    public const LOGIN_INCORRECTO = 'Login incorrecto';
+    public const USUARIO_NO_LOGEADO = 'Usuario no logeado';
+    private $asdf;
 
     private SessionManager $sessionManager;
 
@@ -40,7 +53,7 @@ class UserLoginService
 
     public function login(string $userName, string $password): string
     {
-        if($this->sessionManager->login($userName, $password)){
+        if ($this->sessionManager->login($userName, $password)) {
             return self::LOGIN_CORRECTO;
         }
 
@@ -49,7 +62,7 @@ class UserLoginService
 
     public function logout(User $user): string
     {
-        if(!in_array($user, $this->getLoggedUsers())){
+        if (!\in_array($user, $this->getLoggedUsers(), true)) {
             return self::USUARIO_NO_LOGEADO;
         }
 
@@ -62,15 +75,15 @@ class UserLoginService
     {
         try {
             $this->sessionManager->secureLogin($user->getUserName());
-        }catch (Exception $exception) {
-            if ($exception->getMessage() === "User does not exist") {
-                return "Usuario no existe";
+        } catch (Exception $exception) {
+            if ('User does not exist' === $exception->getMessage()) {
+                return 'Usuario no existe';
             }
-            if ($exception->getMessage() === "User incorrect credentials") {
-                return "Credenciales incorrectos";
+            if ('User incorrect credentials' === $exception->getMessage()) {
+                return 'Credenciales incorrectos';
             }
-            if ($exception->getMessage() === "Service not responding"){
-                return "Servicio no responde";
+            if ('Service not responding' === $exception->getMessage()) {
+                return 'Servicio no responde';
             }
         }
 
