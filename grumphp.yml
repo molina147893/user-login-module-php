@@ -20,4 +20,3 @@ grumphp:
             using_cache: true
             config: '.php-cs-fixer.php'
             verbose: true
-

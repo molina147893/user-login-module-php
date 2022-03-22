@@ -1,0 +1,19 @@
+name: Push-validation
+on: [push]
+jobs:
+  run-code-validations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8'
+          extensions: intl, imagick
+
+      - name: Install PHP dependencies
+        run: composer install
+
+      - name: Run validations with grump
+        run: vendor/bin/grumphp run

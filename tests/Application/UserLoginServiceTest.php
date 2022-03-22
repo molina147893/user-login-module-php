@@ -114,7 +114,7 @@ final class UserLoginServiceTest extends TestCase
     /**
      * @test
      **/
-    public function UserNotSecurelyLoggedInIfUserNotExistsInExternalService()
+    public function userNotSecurelyLoggedInIfUserNotExistsInExternalService()
     {
         $user = new User('user_name', 'password');
         $sessionManager = new MockSessionManager();
@@ -133,7 +133,7 @@ final class UserLoginServiceTest extends TestCase
     /**
      * @test
      **/
-    public function UserNotSecurelyLoggedInIfCredentialsIncorrect()
+    public function userNotSecurelyLoggedInIfCredentialsIncorrect()
     {
         $user = new User('user_name', 'password');
         $sesionManager = new MockSessionManager();
@@ -152,7 +152,7 @@ final class UserLoginServiceTest extends TestCase
     /**
      * @test
      **/
-    public function UserNotSecurelyLoggedInIfExternalServiceNotResponding()
+    public function userNotSecurelyLoggedInIfExternalServiceNotResponding()
     {
         $user = new User('user_name', 'password');
         $sesionManager = new MockSessionManager();

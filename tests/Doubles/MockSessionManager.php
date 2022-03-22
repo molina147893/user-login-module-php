@@ -34,19 +34,22 @@ class MockSessionManager implements SessionManager
         throw new Exception($this->response);
     }
 
-    public function times(int $times){
+    public function times(int $times)
+    {
         $this->expectedTimes = $times;
     }
 
-    public function withArguments(string $argument){
+    public function withArguments(string $argument)
+    {
         $this->expectedArgument = $argument;
     }
 
-    public function andThrowException(string $errorMessage){
+    public function andThrowException(string $errorMessage)
+    {
         $this->response = $errorMessage;
     }
 
-    public function verifyValid():bool
+    public function verifyValid(): bool
     {
         return $this->times == $this->expectedTimes && $this->argument === $this->expectedArgument;
     }

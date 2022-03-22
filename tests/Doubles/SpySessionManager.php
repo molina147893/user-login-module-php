@@ -24,7 +24,7 @@ class SpySessionManager implements SessionManager
 
     public function verifyLogoutCalls(int $expectedCalls): bool
     {
-        if($this->calls !== $expectedCalls){
+        if ($this->calls !== $expectedCalls) {
             throw new Exception('Logout calls incorrect');
         }
 
