@@ -70,4 +70,20 @@ final class UserLoginServiceTest extends TestCase
 
         $this->assertEquals("Ok", $userLoginService->logout($user));
     }
+
+    /**
+     * @test
+     */
+    public function userIsNotLoggedIn()
+    {
+        $user = new User("Asier");
+        $facebookSessionManager = Mockery::mock(FacebookSessionManager::class);
+        $userLoginService = new UserLoginService($facebookSessionManager);
+
+        $facebookSessionManager->allows()->logout("Asier")->andReturn(false);
+
+        $this->assertEquals("User not found", $userLoginService->logout($user));
+    }
+
+
 }
