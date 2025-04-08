@@ -23,6 +23,14 @@ class UserLoginService
         $this->loggedUsers[] = $user->getUserName();
     }
 
+    public function logout(User $user): string
+    {
+        if(in_array($user->getUserName(), $this->loggedUsers)) {
+            return("Ok");
+        }
+        return("User not found");
+    }
+
     public function getLoggedUser(User $user): string
     {
         return $user->getUserName();

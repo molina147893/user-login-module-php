@@ -56,4 +56,18 @@ final class UserLoginServiceTest extends TestCase
 
         $this->assertEquals(4, $userLoginService->getExternalSession());
     }
+
+    /**
+     * @test
+     */
+    public function userIsLoggedOut()
+    {
+        $user = new User("Asier");
+        $facebookSessionManager = new FacebookSessionManager();
+        $userLoginService = new UserLoginService($facebookSessionManager);
+
+        $userLoginService->manualLogin($user);
+
+        $this->assertEquals("Ok", $userLoginService->logout($user));
+    }
 }
