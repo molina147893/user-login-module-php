@@ -25,7 +25,7 @@ class UserLoginService
 
     public function logout(User $user): string
     {
-        if(in_array($user->getUserName(), $this->loggedUsers)) {
+        if($this->sessionManager->logout($user->getUserName())) {
             return("Ok");
         }
         return("User not found");
