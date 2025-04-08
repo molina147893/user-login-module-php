@@ -9,17 +9,10 @@ use UserLoginService\Infrastructure\FacebookSessionManager;
 class UserLoginService
 {
     private array $loggedUsers = [];
-    private FacebookSessionManager $facebookManager;
 
-    /**
-     * @param array $loggedUsers
-     */
-    public function __construct(array $loggedUsers, ?FacebookSessionManager $facebookManager = null)
+    public function __construct(private SessionManager $sessionManager)
     {
-        $this->loggedUsers = $loggedUsers;
-        $this->facebookManager = $facebookManager ?? new FacebookSessionManager();
     }
-
 
     public function manualLogin(User $user): void
     {
@@ -37,7 +30,7 @@ class UserLoginService
 
     public function getExternalSession(): int
     {
-        return $this->facebookManager->getSessions();
+        return $this->sessionManager->getSessions();
     }
 
 }
